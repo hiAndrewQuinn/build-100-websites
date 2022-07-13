@@ -1,0 +1,5 @@
+/* Little tweaks here and there to vanilla simple.css. */
+
+html {
+  font-family: var(--mono-font);
+}

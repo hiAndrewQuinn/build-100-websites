@@ -4,7 +4,7 @@ title = '[2/100] build-100-websites.fun'
 theme = 'hugo-plain-theme'
 
 [params]
-  custom_css = ["css/simple.css/simple.css"]
+  custom_css = ["css/simple.css/simple.css", "css/simple-tweaks.css"]
 
 [markup]
   [markup.goldmark]
