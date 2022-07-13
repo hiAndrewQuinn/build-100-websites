@@ -3,3 +3,7 @@
 html {
   font-family: var(--mono-font);
 }
+
+body {
+  grid-template-columns: 1fr min(50rem, 95%) 1fr;
+}
