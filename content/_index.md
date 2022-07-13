@@ -1,7 +1,7 @@
 ---
 title: "build-100-websites.fun"
 date: 2022-07-13T11:44:21+03:00
-draft: true
+draft: false
 ---
 
 Hi there. My name is Andrew and I am building 100 websites. Here are the websites I have built so far.
