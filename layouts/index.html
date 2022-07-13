@@ -1,8 +1,6 @@
 {{ "<!-- Template begins: layouts/index.html. -->" | safeHTML }}
 <h1>build-100-websites.fun</h1>
-// css
 {{ range .Site.Params.custom_css -}}
-    // css
     <link rel="stylesheet" href="{{ . | relURL }}">
 {{- end }}
 {{ .Content }}
