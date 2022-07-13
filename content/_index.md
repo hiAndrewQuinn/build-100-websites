@@ -12,7 +12,6 @@ Hi there. My name is Andrew and I am building 100 websites. Here are the website
 2. [andrew-quinn.me](#andrew-quinnme)
    1. [Description](#description-1)
    2. [Tech stack](#tech-stack-1)
-3. [](#)
 
 ## [how-to-host-one-html.page](https://how-to-host-one-html.page/)
 
@@ -56,5 +55,3 @@ A semi-professional blog. I don't have a whole lot of content on it yet, mostly 
   Or at least, a backend that is actually coupled to the running of the website itself. You can definitely run a "backend" that just scrapes data out of all those third party APIs so you can analyze it from the comfort of your own laptop.
 - **Version control**: `git` + Github.
 - **Hosting**: Netlify, incidentally themselves the ones who coined the term [Jamstack](https://www.netlify.com/blog/authors/matt-biilmann/).
-
-## 
