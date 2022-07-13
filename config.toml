@@ -1,11 +1,14 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://build-100-websites.fun/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = '[2/100] build-100-websites.fun'
 theme = 'hugo-plain-theme'
+
+[params]
+  custom_css = ["css/simple.css/simple.css"]
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
 
-command = "hugo --gc"
+command = "hugo"
