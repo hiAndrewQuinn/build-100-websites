@@ -37,7 +37,7 @@ A semi-professional blog. I don't have a whole lot of content on it yet, mostly 
 - **Frontend**: None. Kind of.
 - **Backend**: Again, none.
 - **... End?**: Hugo? Honestly, static site generators kind of exist outside of the usual frontend/backend dialectic. I tried to explain it in layman's terms on Reddit here:
-  <iframe id="reddit-embed" src="https://www.redditmedia.com/r/learnpython/comments/vrqt0a/can_you_make_websites_with_python/iey5cv9/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" scrolling="yes" width="100%" height="100%"></iframe>
+  <iframe id="reddit-embed" src="https://www.redditmedia.com/r/learnpython/comments/vrqt0a/can_you_make_websites_with_python/iey5cv9/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" scrolling="no" width="100%" height="100%"></iframe>
 
   [Brian Rinaldi](https://css-tricks.com/really-makes-static-site-generator/#aa-the-basics-of-a-static-site-generator) at CSS-Tricks lists the key ingredients of a static site generator, which he learned while building [HarpJS](https://harpjs.com/), as
 
