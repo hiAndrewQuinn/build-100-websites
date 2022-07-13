@@ -7,3 +7,5 @@ theme = 'hugo-plain-theme'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+command = "hugo --gc"
