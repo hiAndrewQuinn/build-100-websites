@@ -61,7 +61,9 @@
     echo index.html | sudo entr cp index.html /var/www/html
     </pre>
     <p>and we were off to the races!</p>
-    <h4>Github Pages (hosting)<h4>
+    <h4>Github Pages (hosting)</h4>
       <p>Now superkuh was kind enough to give me port forwarding instructions, but I didn't want to pay for a whole VM just to put one HTML page online. At the same time, I had used Netlify and Heroku for everything of this sort my whole life, and I decided I wanted to try out GH Pages to see what all the fuss is about. I had the literal HTML sitting there, in Github - it was even called <code>index.html</code> for crying out loud. How hard could it be?</p>
+      <p>Not hard at all, it turned out! Getting it to deploy on <a href="https://hiandrewquinn.github.io/build-100-websites/">https://hiandrewquinn.github.io/build-100-websites/</a> was as close to a zero-config hosting experience as I've ever seen: Pick your branch, make sure the HTML page is named "index", and you're good.</p>
+    <p>Getting it to deploy on <a href="https://build-100-websites.fun">https://build-100-websites.fun</a> was a little more involved, by necessity, since you have to set up your CNAME and ALIAS tags and everything for a DNS provider. First GH Pages commits a new <a href="https://github.com/hiAndrewQuinn/build-100-websites/blob/main/CNAME">CNAME page to the root of your Git repo</a> containing the name of your website, as per <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">the instructions</a>; j</p>
   </body>
 </html>
