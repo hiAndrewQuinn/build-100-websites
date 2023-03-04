@@ -53,6 +53,17 @@
     </blockquote>
     <p>Hey, it looked simple enough. So I tried it out. And it worked! And it was actually really fun and satisfying!</p>
     <p>Working in ops I definitely knew of <code>nginx</code> for a long time, but it always sounded like the kind of thing that was just a little too low-level for me to bother with. I think I wasn't giving it enough credit - it's quite an improvement on Apache in terms of usability. Realizing I could literally just install it, stick an <code>index.html</code> into the <code>/var/www/html/</code> it created, and then see it in Firefox has changed my tune.</p>
+    <p>There was only one small problem, and that's that <code>nginx</code> doesn't use UTF-8 by default. So my ¯\_(ツ)_/¯ looked like a much more menacing Â¯\_(ãƒ„)_/Â¯ until I figured out how to do that:</p>
+    <ol>
+      <li>First find and open <code>nginx.conf</code>.
+        <ol>
+          <li>Any time I have to edit a random config file on a Linux box these days, I just mindlessly hammer out <code>sudo vi $(fdfind . '/' | fzf)</code> and fuzzy-search until I find the boy; it's a lot easier than trying to use my half-remembered knowledge of the <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FHS</a> to track them down.</li>
+          <li>in this case, it looks like it was living at <code>/etc/nginx/nginx.conf</code>.</li>
+        </ol>
+      </li>
+      <li>Then find the <code>http</code> block and add <code>charset utf-8;</code> to it.</li>
+      <li>Finally, run <code>systemctl reload nginx.service</code> and take a look! No more weird characters.</li>
+    </ol>
     <h4>entr</h4>
     <p>There was of course one annoyance even with this bare-bones setup: I didn't want to have to actually <em>edit</em> this page at <code>/var/www/html/</code>, since that's owned by root. Half the reason I love sites like <a href="http://netlify.com/">Netlify</a> is because I can just set them up to rebuild any time I hit <code>git push</code>. And <code>nginx</code> doesn't come with live reload, like Hugo does.</p>
     <p>So I installed an auto tab reloader extension for Firefox and set it to every 5 seconds, a poor man's live reload, but easy enough; and then I installed <code><a href="https://github.com/clibs/entr">entr</a></code>, a <em>magical</em> little utility that runs a shell command whenever a given file changes. (Seriously. If you've never used this thing before keep it in your back pocket. It is a game-changer when working on web stuff like this, up there with <code>watch</code> in a <code>tmux</code> window.)</p>
@@ -64,6 +75,34 @@
     <h4>Github Pages (hosting)</h4>
       <p>Now superkuh was kind enough to give me port forwarding instructions, but I didn't want to pay for a whole VM just to put one HTML page online. At the same time, I had used Netlify and Heroku for everything of this sort my whole life, and I decided I wanted to try out GH Pages to see what all the fuss is about. I had the literal HTML sitting there, in Github - it was even called <code>index.html</code> for crying out loud. How hard could it be?</p>
       <p>Not hard at all, it turned out! Getting it to deploy on <a href="https://hiandrewquinn.github.io/build-100-websites/">https://hiandrewquinn.github.io/build-100-websites/</a> was as close to a zero-config hosting experience as I've ever seen: Pick your branch, make sure the HTML page is named "index", and you're good.</p>
-    <p>Getting it to deploy on <a href="https://build-100-websites.fun">https://build-100-websites.fun</a> was a little more involved, by necessity, since you have to set up your CNAME and ALIAS tags and everything for a DNS provider. First GH Pages commits a new <a href="https://github.com/hiAndrewQuinn/build-100-websites/blob/main/CNAME">CNAME page to the root of your Git repo</a> containing the name of your website, as per <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">the instructions</a>; j</p>
+    <p>Getting it to deploy on <a href="https://build-100-websites.fun">https://build-100-websites.fun</a> was a little more involved, by necessity, since you have to set up your CNAME and ALIAS tags and everything for a DNS provider. First GH Pages commits a new <a href="https://github.com/hiAndrewQuinn/build-100-websites/blob/main/CNAME">CNAME page to the root of your Git repo</a> containing the name of your website, as per <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">the instructions</a>.</p>
+    <p>I also finally got an opportunity to use <code>dig</code>! I've wanted to use <code>dig</code> ever since I read this <a href="https://jvns.ca/blog/2021/12/04/how-to-use-dig/">Julia Evans article about it</a>.</p>
+    <pre>
+    ➜  ~ dig www.build-100-websites.fun
+
+    ; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> www.build-100-websites.fun
+    ;; global options: +cmd
+    ;; Got answer:
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62786
+    ;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
+
+    ;; OPT PSEUDOSECTION:
+    ; EDNS: version: 0, flags:; udp: 65494
+    ;; QUESTION SECTION:
+    ;www.build-100-websites.fun.	IN	A
+
+    ;; ANSWER SECTION:
+    www.build-100-websites.fun. 227	IN	CNAME	hiandrewquinn.github.io.
+    hiandrewquinn.github.io. 227	IN	A	185.199.110.153
+    hiandrewquinn.github.io. 227	IN	A	185.199.109.153
+    hiandrewquinn.github.io. 227	IN	A	185.199.108.153
+    hiandrewquinn.github.io. 227	IN	A	185.199.111.153
+
+    ;; Query time: 0 msec
+    ;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+    ;; WHEN: Sat Mar 04 16:15:38 EET 2023
+    ;; MSG SIZE  rcvd: 156
+    </pre>
+    <p>Finally I deleted the default <code>A</code> records my DNS slaps in there and added in Github Pages' own <code>A</code> and <code>AAAA</code> ones to let me go to the apex domain, <a href="https://build-100-websites.fun">build-100-websites.fun</a>, sans <code>www</code>.</p>
   </body>
 </html>
