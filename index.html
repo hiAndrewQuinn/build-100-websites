@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>[2/100] Websites Built</title>
+  </head>
+  <body>
+    <h1>Build 100 Websites!</h1>
+    <p>Howdy! The name's Andrew Quinn. I'm building 100 websites!</p>
+    <h2>Why?</h2>
+    <p>¯\_(ツ)_/¯ It seemed like fun!</p>
+    <p>I've been a computer guy for a long time, but even as a little kid I always saw building websites as this immensely daunting task that only a genius could pull off. Then I got a little older and got a computer of my own, and as the years went by it gradually began to appear like a less daunting task to me.</p>
+    <p>I pretty much went through every phase of Unix geekdom you can imagine before, at the ripe age of 28, I finally admitted to myself "I just think websites are cool and I want to build some." Let's see, we have:</p>
+    <ul>
+      <li>The Linux distro enthusiast phase.</li>
+      <li>The Emacs enthusiast phase.</li>
+      <li>The ANSI C enthusiast phase.</li>
+      <li>The Haskell enthusiast phase.</li>
+      <li>The bare metal enthusiast phase. (This one pushed me through a bachelor's in electrical engineering!)</li>
+    </ul>
+    <p>And here we are. Currently I work in the ops department of a very cool fintech firm, and I'm actually quite happy with that role -- but here's my <a href="https://www.linkedin.com/in/heiandrewquinn/">LinkedIn</a> and my <a href="https://github.com/hiAndrewQuinn/">GitHub</a> profile anyway ;)</p>
+    <p>I think I might be the world's slowest maturing web developer, since I got my first job in tech in 2009 as a Linux sysadmin intern at Akamai and just kind of never stopped messing around with Linux until it accidentally became my full-time career. But for some reason, I was always terrified of making the leap into <em>real</em> dev work - what if I'm not smart enough? What if I can't build the product fast enough? What if it's just a bubble? <span style="color:white;">(Yes, I was actually asking myself this about software in <em>2020</em>. Trauma is one motherfucker of a common-sense-scrambler.)</span></p>
+    <h2>Website #1: <a href="https://build-100-websites.fun">https://build-100-websites.fun</a></h2>
+    <p>That's right, this right here is website #1! Its primary purpose is simply as a <strong>technique catalogue</strong> of how I went about doing everything, what big technologies I used, etc. It is <em>unapologetically</em> self-indulgent that way.</p>
+    <h3>Major technologies employed</h3>
+    <h4>Plain ol' HTML</h4>
+    <p>Ha, it's 2023 and I wrote all the HTML for this little page by hand!</p>
+    <p>But it's good to get back to basics every now and then. I mean <em>really</em> basic - I've had a lot of fun nights in my life reading old websites that looked not too dissimilar at all from this, straight up Web 1.0. My favorites are when you find a professor's website that looks like it might as well be the inspiration for <a href="https://danluu.com">danluu.com</a> but then you realize it's <em>also</em> the page of one of <a href="http://www.ece.northwestern.edu/ecefaculty/Allen1.html">the most cited IEEE Fellows of all time</a>.<span style="color: white;">(Rest in peace, Dr. Taflove. I'll never forget what you did for me, and I wish I wasn't as mentally ill as I was when I was your student. Maybe I could have made something more of myself.)</span></p>
+    <h4>nginx</h4>
+    <p>I actually have <a href="https://news.ycombinator.com/user?id=superkuh">superkuh</a> to thank for this choice. After my <a href="https://news.ycombinator.com/item?id=34958454">first ever Hacker News submission to hit the front page</a>, they left <a href="https://news.ycombinator.com/item?id=34959053">a comment</a>:
+    <blockquote>
+      <p>You can just write HTML too. It is much simpler, easier to maintain, and more secure (using a real webserver). Make .html files, open them in a text editor, type in the HTML. Here, I'll make an example like the minimum viable hugo.</p>
+
+      <pre>
+        $ sudo apt get install nginx
+      </pre>
+
+      <pre>
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;title&gt;
+              Lorem ipsum dolor sit amet
+            &lt;title&gt;
+          &lt;head&gt;
+          &lt;body&gt;
+            &lt;h1&gt;
+              Lorem ipsum dolor sit amet
+            &lt;h1&gt;
+          &lt;body&gt;
+        &lt;html&gt;
+      </pre>
+
+      <p>And now save it as index.html in the www directory that installing nginx creates. Check it out at http://127.0.0.1/ . Go to your router and forward port 80 to the IP address of the computer running nginx to make it public.</p>
+    </blockquote>
+    <p>Hey, it looked simple enough. So I tried it out. And it worked! And it was actually really fun and satisfying!</p>
+    <p>Working in ops I definitely knew of <code>nginx</code> for a long time, but it always sounded like the kind of thing that was just a little too low-level for me to bother with. I think I wasn't giving it enough credit - it's quite an improvement on Apache in terms of usability. Realizing I could literally just install it, stick an <code>index.html</code> into the <code>/var/www/html/</code> it created, and then see it in Firefox has changed my tune.</p>
+    <h4>entr</h4>
+    <p>There was of course one annoyance even with this bare-bones setup: I didn't want to have to actually <em>edit</em> this page at <code>/var/www/html/</code>, since that's owned by root. Half the reason I love sites like <a href="http://netlify.com/">Netlify</a> is because I can just set them up to rebuild any time I hit <code>git push</code>. And <code>nginx</code> doesn't come with live reload, like Hugo does.</p>
+    <p>So I installed an auto tab reloader extension for Firefox and set it to every 5 seconds, a poor man's live reload, but easy enough; and then I installed <code><a href="https://github.com/clibs/entr">entr</a></code>, a <em>magical</em> little utility that runs a shell command whenever a given file changes. (Seriously. If you've never used this thing before keep it in your back pocket. It is a game-changer when working on web stuff like this, up there with <code>watch</code> in a <code>tmux</code> window.)</p>
+    <p>I went to my <code>build-100-websites</code> repo, punched in</p>
+    <pre>
+    echo index.html | sudo entr cp index.html /var/www/html
+    </pre>
+    <p>and we were off to the races!</p>
+    <h4>Github Pages (hosting)<h4>
+      <p>Now superkuh was kind enough to give me port forwarding instructions, but I didn't want to pay for a whole VM just to put one HTML page online. At the same time, I had used Netlify and Heroku for everything of this sort my whole life, and I decided I wanted to try out GH Pages to see what all the fuss is about. I had the literal HTML sitting there, in Github - it was even called <code>index.html</code> for crying out loud. How hard could it be?</p>
+  </body>
+</html>
