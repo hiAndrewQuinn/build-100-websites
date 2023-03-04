@@ -1,0 +1,13 @@
+Github {
+git repo {
+    'index.html'
+  }
+}
+
+nginx {
+    /var/www/html/
+  }
+
+Github.git repo.'index.html' -> nginx./var/www/html/: Copy on file change with `entr`
+
+Github.git repo -> Github Pages
