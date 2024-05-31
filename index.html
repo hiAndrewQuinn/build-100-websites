@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <html>
   <head>
-    <title>[2/100] Websites Built</title>
+    <title>[5/100] Websites Built</title>
   </head>
   <body>
     <h1>Build 100 Websites!</h1>
@@ -119,10 +119,13 @@
     </ul>
     <p>Following Simon Willison's instructions, I created my resources in the order Resource Group, Storage Account, Function App. I actually really like the simplicity of this stack - it's similar to working solely with Lambdas and S3 in Amazon Web Services. Easy to keep track of.</p>
     <p>Then came the bugs! Unsurprsingly Mr Willison does not spend as much time in Azure land as me, and so his codebase was slightly out of date. The instructions weren't clear-to-the-point-of-brainless, either, so I added a few bits of my own to that. <a href="https://github.com/hiAndrewQuinn/datasette-on-azure">Here's the results!"</a>
-    <h3>The cost of getting set up</h3>
+      <h3>The cost of getting set up</h3>
     <p>After an evening or two of messing around with it, I finally got my Azure Function to work right! I was serving an honest-to-goodness serverless web app, and it wasn't even hard! For a while I loved living on the shoulders of giants... Until I saw <em>the bill.</em></p>
     <p><strong>One cent.</strong> One whole cent a day. That's how much my little experiment was costing me, and it was entirely from storage costs. I couldn't believe it! I had an actual bill that wasn't from a DNS provider, for the first time in my life!</p>
     <p>I knew from my work that storage is one of those bugbears you absolutely want to keep an eye on when running any kind of software busines, because if you're doing things right (aka collecting a lot of data), it will only grow over time - and you'd better make sure you can afford that. I found I had on the order of 50 megabytes in blob containers for my serverless SQLite database searcher, alongside about 3 MiB of tables and 6 KiB of file shares. At current prices of $0.15 per GB, this would have explained the approximately one-cent-a-day storage costs I saw. In other words, I could reliably bet on an average SQLite database, infrequently acceessed and under, say, 10 MB of data to cost about 50 cents a month.</p>
     <p>I figured this was pretty acceptable, actually, because I had another idea brewing...</p>
+    <h2>Website #3: <a href="https://andrew-quinn.me/">My blog, andrew-quinn.me!</a></h2>
+    <h2>Website #4: <a href="https://hiandrewquinn.github.io/til-site/">Andrew Quinn's TILs!</a></h2>
+    <h2>Website #5: <a href="https://hiandrewquinn.github.io/selkouutiset-archive/">Andrew's Selkouutiset Archive!</a></h2>
   </body>
 </html>
