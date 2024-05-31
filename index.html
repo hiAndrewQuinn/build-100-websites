@@ -39,16 +39,16 @@
 
       <pre>
         &lt;html&gt;
-          &lt;head&gt;
-            &lt;title&gt;
-              Lorem ipsum dolor sit amet
-            &lt;title&gt;
-          &lt;head&gt;
-          &lt;body&gt;
-            &lt;h1&gt;
-              Lorem ipsum dolor sit amet
-            &lt;h1&gt;
-          &lt;body&gt;
+        &lt;head&gt;
+        &lt;title&gt;
+        Lorem ipsum dolor sit amet
+        &lt;title&gt;
+        &lt;head&gt;
+        &lt;body&gt;
+        &lt;h1&gt;
+        Lorem ipsum dolor sit amet
+        &lt;h1&gt;
+        &lt;body&gt;
         &lt;html&gt;
       </pre>
 
@@ -72,39 +72,39 @@
     <p>So I installed an auto tab reloader extension for Firefox and set it to every 5 seconds, a poor man's live reload, but easy enough; and then I installed <code><a href="https://github.com/clibs/entr">entr</a></code>, a <em>magical</em> little utility that runs a shell command whenever a given file changes. (Seriously. If you've never used this thing before keep it in your back pocket. It is a game-changer when working on web stuff like this, up there with <code>watch</code> in a <code>tmux</code> window.)</p>
     <p>I went to my <code>build-100-websites</code> repo, punched in</p>
     <pre>
-    echo index.html | sudo entr cp index.html /var/www/html
+      echo index.html | sudo entr cp index.html /var/www/html
     </pre>
     <p>and we were off to the races!</p>
     <h4>Github Pages (hosting)</h4>
-      <p>Now superkuh was kind enough to give me port forwarding instructions, but I didn't want to pay for a whole VM just to put one HTML page online. At the same time, I had used Netlify and Heroku for everything of this sort my whole life, and I decided I wanted to try out GH Pages to see what all the fuss is about. I had the literal HTML sitting there, in Github - it was even called <code>index.html</code> for crying out loud. How hard could it be?</p>
-      <p>Not hard at all, it turned out! Getting it to deploy on <a href="https://hiandrewquinn.github.io/build-100-websites/">https://hiandrewquinn.github.io/build-100-websites/</a> was as close to a zero-config hosting experience as I've ever seen: Pick your branch, make sure the HTML page is named "index", and you're good.</p>
+    <p>Now superkuh was kind enough to give me port forwarding instructions, but I didn't want to pay for a whole VM just to put one HTML page online. At the same time, I had used Netlify and Heroku for everything of this sort my whole life, and I decided I wanted to try out GH Pages to see what all the fuss is about. I had the literal HTML sitting there, in Github - it was even called <code>index.html</code> for crying out loud. How hard could it be?</p>
+    <p>Not hard at all, it turned out! Getting it to deploy on <a href="https://hiandrewquinn.github.io/build-100-websites/">https://hiandrewquinn.github.io/build-100-websites/</a> was as close to a zero-config hosting experience as I've ever seen: Pick your branch, make sure the HTML page is named "index", and you're good.</p>
     <p>Getting it to deploy on <a href="https://build-100-websites.fun">https://build-100-websites.fun</a> was a little more involved, by necessity, since you have to set up your CNAME and ALIAS tags and everything for a DNS provider. First GH Pages commits a new <a href="https://github.com/hiAndrewQuinn/build-100-websites/blob/main/CNAME">CNAME page to the root of your Git repo</a> containing the name of your website, as per <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">the instructions</a>.</p>
     <p>I also finally got an opportunity to use <code>dig</code>! I've wanted to use <code>dig</code> ever since I read this <a href="https://jvns.ca/blog/2021/12/04/how-to-use-dig/">Julia Evans article about it</a>.</p>
     <pre>
-    ➜  ~ dig www.build-100-websites.fun
+      ➜  ~ dig www.build-100-websites.fun
 
-    ; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> www.build-100-websites.fun
-    ;; global options: +cmd
-    ;; Got answer:
-    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62786
-    ;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
+      ; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> www.build-100-websites.fun
+      ;; global options: +cmd
+      ;; Got answer:
+      ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62786
+        ;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
 
-    ;; OPT PSEUDOSECTION:
-    ; EDNS: version: 0, flags:; udp: 65494
-    ;; QUESTION SECTION:
-    ;www.build-100-websites.fun.	IN	A
+        ;; OPT PSEUDOSECTION:
+        ; EDNS: version: 0, flags:; udp: 65494
+        ;; QUESTION SECTION:
+        ;www.build-100-websites.fun.	IN	A
 
-    ;; ANSWER SECTION:
-    www.build-100-websites.fun. 227	IN	CNAME	hiandrewquinn.github.io.
-    hiandrewquinn.github.io. 227	IN	A	185.199.110.153
-    hiandrewquinn.github.io. 227	IN	A	185.199.109.153
-    hiandrewquinn.github.io. 227	IN	A	185.199.108.153
-    hiandrewquinn.github.io. 227	IN	A	185.199.111.153
+        ;; ANSWER SECTION:
+        www.build-100-websites.fun. 227	IN	CNAME	hiandrewquinn.github.io.
+        hiandrewquinn.github.io. 227	IN	A	185.199.110.153
+        hiandrewquinn.github.io. 227	IN	A	185.199.109.153
+        hiandrewquinn.github.io. 227	IN	A	185.199.108.153
+        hiandrewquinn.github.io. 227	IN	A	185.199.111.153
 
-    ;; Query time: 0 msec
-    ;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
-    ;; WHEN: Sat Mar 04 16:15:38 EET 2023
-    ;; MSG SIZE  rcvd: 156
+        ;; Query time: 0 msec
+        ;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+        ;; WHEN: Sat Mar 04 16:15:38 EET 2023
+        ;; MSG SIZE  rcvd: 156
     </pre>
     <p>Finally I deleted the default <code>A</code> records my DNS slaps in there and added in Github Pages' own <code>A</code> and <code>AAAA</code> ones to let me go to the apex domain, <a href="https://build-100-websites.fun">build-100-websites.fun</a>, sans <code>www</code>.</p>
     <h2>Website #2: <a href="https://azure-functions-datasette.azurewebsites.net/">https://azure-functions-datasette.azurewebsites.net/</a></h2>
@@ -119,7 +119,7 @@
     </ul>
     <p>Following Simon Willison's instructions, I created my resources in the order Resource Group, Storage Account, Function App. I actually really like the simplicity of this stack - it's similar to working solely with Lambdas and S3 in Amazon Web Services. Easy to keep track of.</p>
     <p>Then came the bugs! Unsurprsingly Mr Willison does not spend as much time in Azure land as me, and so his codebase was slightly out of date. The instructions weren't clear-to-the-point-of-brainless, either, so I added a few bits of my own to that. <a href="https://github.com/hiAndrewQuinn/datasette-on-azure">Here's the results!"</a>
-      <h3>The cost of getting set up</h3>
+    <h3>The cost of getting set up</h3>
     <p>After an evening or two of messing around with it, I finally got my Azure Function to work right! I was serving an honest-to-goodness serverless web app, and it wasn't even hard! For a while I loved living on the shoulders of giants... Until I saw <em>the bill.</em></p>
     <p><strong>One cent.</strong> One whole cent a day. That's how much my little experiment was costing me, and it was entirely from storage costs. I couldn't believe it! I had an actual bill that wasn't from a DNS provider, for the first time in my life!</p>
     <p>I knew from my work that storage is one of those bugbears you absolutely want to keep an eye on when running any kind of software busines, because if you're doing things right (aka collecting a lot of data), it will only grow over time - and you'd better make sure you can afford that. I found I had on the order of 50 megabytes in blob containers for my serverless SQLite database searcher, alongside about 3 MiB of tables and 6 KiB of file shares. At current prices of $0.15 per GB, this would have explained the approximately one-cent-a-day storage costs I saw. In other words, I could reliably bet on an average SQLite database, infrequently acceessed and under, say, 10 MB of data to cost about 50 cents a month.</p>
@@ -127,5 +127,10 @@
     <h2>Website #3: <a href="https://andrew-quinn.me/">My blog, andrew-quinn.me!</a></h2>
     <h2>Website #4: <a href="https://hiandrewquinn.github.io/til-site/">Andrew Quinn's TILs!</a></h2>
     <h2>Website #5: <a href="https://hiandrewquinn.github.io/selkouutiset-archive/">Andrew's Selkouutiset Archive!</a></h2>
+    <hr/>
+    <h1>Comments!</h1>
+    <p>Want to add a comment? Go right ahead! Simply go to <a href="https://github.com/hiAndrewQuinn/build-100-websites">the source repo for this page</a> and make a PR to add a comment below. If I like it, I'll merge it into the site.</p>
+    <p>21:29 2024-05-31, Andrew Quinn:
+      <aside>Hello, comments!</aside>
   </body>
 </html>
