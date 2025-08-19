@@ -125,12 +125,70 @@
     <p>I knew from my work that storage is one of those bugbears you absolutely want to keep an eye on when running any kind of software busines, because if you're doing things right (aka collecting a lot of data), it will only grow over time - and you'd better make sure you can afford that. I found I had on the order of 50 megabytes in blob containers for my serverless SQLite database searcher, alongside about 3 MiB of tables and 6 KiB of file shares. At current prices of $0.15 per GB, this would have explained the approximately one-cent-a-day storage costs I saw. In other words, I could reliably bet on an average SQLite database, infrequently acceessed and under, say, 10 MB of data to cost about 50 cents a month.</p>
     <p>I figured this was pretty acceptable, actually, because I had another idea brewing...</p>
     <h2>Website #3: <a href="https://andrew-quinn.me/">My blog, andrew-quinn.me!</a></h2>
+    <p>Things  started to head up with this one, so I'm going to start logging metadata.</p>
+    <h3>At a Glance</h3>
+    <table border="1">
+      <tr>
+        <th>Category</th>
+        <th>Details</th>
+      </tr>
+      <tr>
+        <th>Project Status</th>
+        <td>Actively Maintained</td>
+      </tr>
+      <tr>
+        <th>Date Range</th>
+        <td>2023-02 to (ongoing!)</td>
+      </tr>
+      <tr>
+        <th>Tech Stack</th>
+        <td><strong>Hugo</strong>, Pagefind, Cusdis</td>
+      </tr>
+      <tr>
+        <th>Primary Language(s)</th>
+        <td><strong>HTML, Markdown, CSS</strong>, JavaScript (much later)</td>
+      </tr>
+      <tr>
+        <th>Lines of Code</th>
+        <td>20,063</td>
+      </tr>
+      <tr>
+        <th>Hosting</th>
+        <td>Azure Static Web Apps (originally Netlify)</td>
+      </tr>
+      <tr>
+        <th>Deployment</th>
+        <td>CI/CD via GitHub Actions</td>
+      </tr>
+      <tr>
+        <th>Key Features</th>
+        <td>Full-text search, dark mode, comments, table of contents</td>
+      </tr>
+      <tr>
+        <th>License</th>
+        <td>Closed-source, all rights reserved</td>
+      </tr>
+      <tr>
+        <th>Source Code</th>
+        <td>Private</td>
+      </tr>
+    </table>
+    <h3>Hugo to the rescue</h3>
+    <p>So it won't surprise any of you to learn that I have long been a fan of <a href="https://pandoc.org/">pandoc</a>, especially how it can turn Markdown files into HTML files. Did you know that you can make <em>entire websites</em> like that!? Whoaaaaa. This kind of pandoc-plus software is usually called a <a href="https://en.wikipedia.org/wiki/Static_site_generator">static site generator, or SSG,</a> and there are even <a href="https://jamstack.org/">buzzwords around it</a> for people who like making money off of that kind of thing.</p>
+    <p>SSGs are cool because sometimes a little abstraction is a good thing. Yes, we all love raw HTML around here 😼 but let's be real, if you're going to start maintaining significant amounts of actual content, you might want something that can get out of your way a little more. Ultimately I chose <a href="https://gohugo.io/">Hugo</a> as my SSG - I figured I only really needed to learn one, and while Hugo had a reputation for a difficult learning curve, I figured I could amortize that coist against all future sites I built with the site. (Sitting here in August 2025, I'd say I was right!)</p>
+    <p>SSGs are cool because when you take the database out of the mix entirely, and only want to serve HTML, CSS, and maybe the lightest buttering of JavaScript (which I didn't even get around to on this site until like summer 2025) they can usually be literally free to operate. Like, seriously, you'd have to be some kind of idiot to screw up e.g. optimizing your GIFs so that you don't accidentally have your static site go viral on Hacker News and be buried by server bills...</p>
+    <h3>I go viral on Hacker News and get buried by server bills</h3>
+    <p>Oops. <a href="https://andrew-quinn.me/fzf/">https://andrew-quinn.me/fzf/</a>, published less than two months after I started the site, goes <a href="https://news.ycombinator.com/item?id=35248098">bonkers viral on Hacker News</a> and about a week later I learn <a href="https://andrew-quinn.me/azure/">just how Netlify, my hosting provider, made its bones.</a> In retrospect, $100 and change is an <em>incredibly cheap</em> amount to pay for that particular learning experience, and I promptly decided to actually use all of that Azure cloud knowledge I had accumulated working at <a href="https://nomentia.com/">the best cash management company in the Nordics</a> to future-proof myself with an Azure Static Web App.</p>
+    <p>Success! I have never had another post from AQDM go remotely as viral as that first one, but if it ever happens again I will be ready.</p>
+    <h3>Slouching towards the Long Now</h3>
+    <p>My life gradually got busier after 2023. I switched jobs to a senior position at another company, and this tiny digital cottage of mine languished with barely any content since then. Virtually nothing on the blog actually happened in 2024. Virtually nothing on the blog actually happened in 2024. A second burst of activity in 2025 while I was on paid parental leave with my firstborn child led me to have to face the facts: I really wanted a digital home, but I didn't have much of a clue for what I would actually want to <em>do</em> there.</p>
+    <p>So I decided, ultimately, that this was going to be a slim, slowly-updating website about <em>me</em>, as a personal human being. I have other websites now for any technological work I want to publicize; I want this website to slowly grow into a sprawling morass of essays and personal reflections, that the reader can walk away from thinking about things in a new light. (I am very, very far from that goal, but that is my intention!)</p>
     <h2>Website #4: <a href="https://hiandrewquinn.github.io/til-site/">Andrew Quinn's TILs!</a></h2>
     <h2>Website #5: <a href="https://hiandrewquinn.github.io/selkouutiset-archive/">Andrew's Selkouutiset Archive!</a></h2>
     <hr/>
     <h1>Comments!</h1>
     <p>Want to add a comment? Go right ahead! Simply go to <a href="https://github.com/hiAndrewQuinn/build-100-websites">the source repo for this page</a> and make a PR to add a comment below. If I like it, I'll merge it into the site.</p>
     <p>21:29 2024-05-31, Andrew Quinn:
-      <aside>Hello, comments!</aside>
+    <aside>Hello, comments!</aside>
   </body>
 </html>
